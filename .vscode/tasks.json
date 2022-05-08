@@ -1,0 +1,107 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        // {
+        //     "label": "boost log (re)build",
+        //     "type": "shell",
+        //     "command": "bmake",
+        //     "args": [
+        //         "+a",
+        //         "+dDEBUG",
+        //         "+dOutDir=D:/dev/mdlapps/",
+        //         "+dIntDir=${fileDirname}\\",
+        //     ],
+        //     "group": {
+        //         "kind": "build",
+        //         "isDefault": false,
+        //     }
+        // },
+        // {
+        //     "label": "boost log clean",
+        //     "type": "shell",
+        //     "command": "bmake",
+        //     "args": [
+        //         "+aD",
+        //         "+dOutDir=D:/dev/mdlapps/",
+        //         "+dIntDir=${fileDirname}/",
+        //     ],
+        //     "group": {
+        //         "kind": "build",
+        //         "isDefault": false,
+        //     }
+        // },
+        // {
+        //     "label": "boost log & log",
+        //     "type": "shell",
+        //     "command": "bmake +a +dDEBUG",
+        //     "args": [],
+        //     "group": {
+        //         "kind": "build",
+        //         "isDefault": false,
+        //     }
+        // },
+        // {
+        //     "label": "boost log run MicroStation",
+        //     "type": "shell",
+        //     "command": "microstation.exe",
+        //     "args": [
+        //         "-wsMS_CULTURE=en",
+        //         "3D.Metric.Design.odbc.ole.db",
+        //     ],
+        //     "group": {
+        //         "kind": "build",
+        //         "isDefault": false,
+        //     }
+        // },
+        // {
+        //     "label": "boost log run OBD",
+        //     "type": "shell",
+        //     "command": "OpenBuildingsDesigner.exe",
+        //     "args": [
+        //         "-wsMS_CULTURE=en",
+        //     ],
+        //     "group": {
+        //         "kind": "build",
+        //         "isDefault": false,
+        //     }
+        // },
+        {
+            "label": "boost log clear",
+            "type": "shell",
+            "command": "rm *.obj, *.exe, *.ilk, *.pdb",
+            "args": [
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false,
+            }
+        },
+		{
+			"label": "boost log (re)build",
+			"type": "cppbuild",
+			"command": "cl.exe",
+			"args": [
+				"/Zi",
+				"/EHsc",
+				"/nologo",
+				"/Fe:",
+				"${fileDirname}/${fileBasenameNoExtension}.exe",
+				"${file}",
+				"-I${BOOST_ROOT}",
+				"/link",
+				"/LIBPATH:${BOOST_LIBS}",
+			],
+			"options": {
+				"cwd": "${fileDirname}"
+			},
+			"problemMatcher": [
+				"$msCompile",
+			],
+			"group": {
+				"kind": "build",
+				"isDefault": false,
+			},
+			"detail": "compiler: cl.exe"
+		},
+    ]
+}

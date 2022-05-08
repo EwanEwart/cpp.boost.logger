@@ -1,0 +1,7 @@
+-w
+-od:\ProgramFiles\Bentley\MicroStationCONNECTSDK\examples\DialogBoxes\BasicDialogBox\.vscode\rscobj\basicmsg.rsc
+-iD:\ProgramFiles\Bentley\MicroStationCONNECTSDK\include
+-iD:\ProgramFiles\Bentley\MicroStationCONNECTSDK\examples\DialogBoxes\BasicDialogBox\transkit
+-dDEBUG
+-id:\ProgramFiles\Bentley\MicroStationCONNECTSDK\examples\DialogBoxes\BasicDialogBox\.vscode\objects
+D:\ProgramFiles\Bentley\MicroStationCONNECTSDK\examples\DialogBoxes\BasicDialogBox\transkit\basicmsg.r

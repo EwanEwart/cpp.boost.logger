@@ -1,0 +1,8 @@
+-dynamicbase
+-dll
+-out:"D:/dev/mdlapps/basic.dll"
+-implib:"d:\ProgramFiles\Bentley\MicroStationCONNECTSDK\examples\DialogBoxes\BasicDialogBox\.vscode\objects\basic.lib"
+-pdb:"D:/dev/mdlapps/basic.pdb"
+-fixed:no 
+d:\ProgramFiles\Bentley\MicroStationCONNECTSDK\examples\DialogBoxes\BasicDialogBox\.vscode\objects\basic.obj  D:\ProgramFiles\Bentley\MicroStationCONNECTSDK\library\BentleyAllocator.lib  D:\ProgramFiles\Bentley\MicroStationCONNECTSDK\library\DgnPlatform.lib  gdi32.lib user32.lib kernel32.lib "C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\VC\Tools\MSVC\14.29.30133\\lib\x64\msvcrt.lib"  
+ D:\ProgramFiles\Bentley\MicroStationCONNECTSDK\library\mdlbltin.lib
