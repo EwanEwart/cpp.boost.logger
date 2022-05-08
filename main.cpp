@@ -1,25 +1,24 @@
-/*
- *          Copyright Andrey Semashev 2007 - 2015.
- * Distributed under the Boost Software License, Version 1.0.
- *    (See accompanying file LICENSE_1_0.txt or copy at
- *          http://www.boost.org/LICENSE_1_0.txt)
- */
-/*!
- * \file   main.cpp
- * \author Andrey Semashev
- * \date   07.11.2009
- *
- * \brief  An example of trivial logging.
- */
-
 // #define BOOST_ALL_DYN_LINK 1
 // #define BOOST_LOG_DYN_LINK 1
 
 #include <boost/log/trivial.hpp>
 #include <boost/log/core.hpp>
 #include <boost/log/expressions.hpp>
+#include <boost/log/utility/setup/file.hpp> // boost::log::add_file_log
 
 #include <iostream>
+
+#include "main.h"
+
+void init()
+{
+    boost::log::add_file_log("sample.log");
+
+    boost::log::core::get()->set_filter
+    (
+        boost::log::trivial::severity >= boost::log::trivial::info
+    );
+}
 
 int main(int argc, char* argv[])
 {
@@ -36,11 +35,8 @@ int main(int argc, char* argv[])
     // Filtering can also be applied, a bit complicated though
     using namespace boost::log;
 
-    core::get()->set_filter
-    (
-        trivial::severity >= trivial::info
-    );
-
+    init();
+    
     std::clog << "\nThe first two severities won't pass the filter" << std::endl;
     std::clog <<  "Listed in order of severity from lowest to highest\n" << std::endl;
 
