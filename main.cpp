@@ -5,6 +5,7 @@
 #include <boost/log/utility/setup/file.hpp> // boost::log::add_file_log
 #include <boost/log/utility/setup/common_attributes.hpp>
 #include <boost/log/sources/severity_logger.hpp>
+#include <boost/log/sources/global_logger_storage.hpp>
 // #include <boost/log/core.hpp>
 // #include <boost/log/expressions.hpp>
 // #include <boost/log/sinks/text_file_backend.hpp>
@@ -20,6 +21,9 @@
 #include <iostream>
 
 // #include "main.h"
+
+/* Set up global logger */
+BOOST_LOG_INLINE_GLOBAL_LOGGER_DEFAULT(wslogger_t, boost::log::sources::wseverity_logger<boost::log::trivial::severity_level>)
 
 void log_init()
 {
@@ -69,13 +73,24 @@ int main(int argc, char* argv[])
     std::wclog << L"\nThe first two severities won't pass the filter" << std::endl;
     std::wclog << L"Listed in order of severity from lowest to highest\n" << std::endl;
     
-    boost::log::sources::wseverity_logger<boost::log::trivial::severity_level> wslogger
-    (boost::log::keywords::severity = boost::log::trivial::severity_level::info/*default severity level*/);
+    // ctor logger
+    // boost::log::sources::wseverity_logger<boost::log::trivial::severity_level> wslogger
+    // (
+    //     /*default severity level*/
+    //     boost::log::keywords::severity = boost::log::trivial::severity_level::info
+    // );
+
+    auto wslogger = wslogger_t::get();
 
     BOOST_LOG_SEV(wslogger, trivial::trace)   << L"A trace severity message";
     BOOST_LOG_SEV(wslogger, trivial::debug)   << L"A debug severity message";
-    // BOOST_LOG_SEV(wslogger, trivial::info)    << L"An informational severity message";
-    BOOST_LOG(wslogger)                       << L"An informational severity message";
+
+    // explicit severity
+    BOOST_LOG_SEV(wslogger, trivial::info)    << L"An informational severity message";
+
+    // implicit severity
+    // BOOST_LOG(wslogger)                       << L"An informational severity message, default severity by ctor";
+    
     BOOST_LOG_SEV(wslogger, trivial::warning) << L"A warning severity message";
     BOOST_LOG_SEV(wslogger, trivial::error)   << L"An error severity message";
     BOOST_LOG_SEV(wslogger, trivial::fatal)   << L"A fatal severity message";
