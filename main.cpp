@@ -28,9 +28,13 @@ void init()
 {
     boost::log::add_file_log
     (
+        // file name pattern
         boost::log::keywords::file_name = "sample_%N.log"
+        // rotate files every 10 MiB
         , boost::log::keywords::rotation_size = 10 * 1024 * 1024
+        // or at midnight
         , boost::log::keywords::time_based_rotation = boost::log::sinks::file::rotation_at_time_point(0, 0, 0)
+        // log record format
         , boost::log::keywords::format = "[%TimeStamp%]: %Message%"
     );
 
@@ -38,7 +42,7 @@ void init()
     (
         boost::log::trivial::severity >= boost::log::trivial::info
     );
-    logging::add_common_attributes();
+    boost::log::add_common_attributes();
 }
 
 int main(int argc, char* argv[])
