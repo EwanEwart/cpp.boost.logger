@@ -49,32 +49,32 @@ void log_init()
 
 int main(int argc, char* argv[])
 {
-    std::clog << "\nTrivial logging: all log records are written into a file" << std::endl;
-    std::clog << "Listed in order of severity from lowest to highest\n" << std::endl;
+    std::wclog << L"\nTrivial logging: all log records are written into a file" << std::endl;
+    std::wclog << L"Listed in order of severity from lowest to highest\n" << std::endl;
 
-    BOOST_LOG_TRIVIAL(trace) << "A trace severity message";
-    BOOST_LOG_TRIVIAL(debug) << "A debug severity message";
-    BOOST_LOG_TRIVIAL(info) << "An informational severity message";
-    BOOST_LOG_TRIVIAL(warning) << "A warning severity message";
-    BOOST_LOG_TRIVIAL(error) << "An error severity message";
-    BOOST_LOG_TRIVIAL(fatal) << "A fatal severity message";
+    BOOST_LOG_TRIVIAL(trace)    << "A trace severity message";
+    BOOST_LOG_TRIVIAL(debug)    << "A debug severity message";
+    BOOST_LOG_TRIVIAL(info)     << "An informational severity message";
+    BOOST_LOG_TRIVIAL(warning)  << "A warning severity message";
+    BOOST_LOG_TRIVIAL(error)    << "An error severity message";
+    BOOST_LOG_TRIVIAL(fatal)    << "A fatal severity message";
 
     // Filtering can also be applied, a bit complicated though
     using namespace boost::log;
 
     log_init();
 
-    std::clog << "\nThe first two severities won't pass the filter" << std::endl;
-    std::clog << "Listed in order of severity from lowest to highest\n" << std::endl;
+    std::wclog << L"\nThe first two severities won't pass the filter" << std::endl;
+    std::wclog << L"Listed in order of severity from lowest to highest\n" << std::endl;
     
-    boost::log::sources::severity_logger<boost::log::trivial::severity_level> logger;
+    boost::log::sources::wseverity_logger<boost::log::trivial::severity_level> wlogger;
 
-    BOOST_LOG_SEV(logger, trivial::trace) << "A trace severity message";
-    BOOST_LOG_SEV(logger, trivial::debug) << "A debug severity message";
-    BOOST_LOG_SEV(logger, trivial::info) << "An informational severity message";
-    BOOST_LOG_SEV(logger, trivial::warning) << "A warning severity message";
-    BOOST_LOG_SEV(logger, trivial::error) << "An error severity message";
-    BOOST_LOG_SEV(logger, trivial::fatal) << "A fatal severity message";
+    BOOST_LOG_SEV(wlogger, trivial::trace)   << L"A trace severity message";
+    BOOST_LOG_SEV(wlogger, trivial::debug)   << L"A debug severity message";
+    BOOST_LOG_SEV(wlogger, trivial::info)    << L"An informational severity message";
+    BOOST_LOG_SEV(wlogger, trivial::warning) << L"A warning severity message";
+    BOOST_LOG_SEV(wlogger, trivial::error)   << L"An error severity message";
+    BOOST_LOG_SEV(wlogger, trivial::fatal)   << L"A fatal severity message";
 
     return 0;
 }
