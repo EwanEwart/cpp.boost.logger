@@ -22,8 +22,8 @@
 
 // #include "main.h"
 
-/* Set up global logger */
-BOOST_LOG_INLINE_GLOBAL_LOGGER_DEFAULT(wslogger_t, boost::log::sources::wseverity_logger<boost::log::trivial::severity_level>)
+/* Set up a Global Logger Object */
+BOOST_LOG_INLINE_GLOBAL_LOGGER_DEFAULT(wslogger_tag, boost::log::sources::wseverity_logger<boost::log::trivial::severity_level>)
 
 void log_init()
 {
@@ -80,7 +80,13 @@ int main(int argc, char* argv[])
     //     boost::log::keywords::severity = boost::log::trivial::severity_level::info
     // );
 
-    auto wslogger = wslogger_t::get();
+    /* 
+        The wslogger will refer to the one and only instance of the logger throughout the application, 
+        even if the application consists of multiple modules. 
+        The get function itself is thread-safe, 
+        so there is no need in additional synchronisation around it. 
+    */
+    auto wslogger = wslogger_tag::get();
 
     BOOST_LOG_SEV(wslogger, trivial::trace)   << L"A trace severity message";
     BOOST_LOG_SEV(wslogger, trivial::debug)   << L"A debug severity message";
